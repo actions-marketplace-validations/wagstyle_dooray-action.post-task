@@ -1,0 +1,17 @@
+# Idea
+.idea
+*.iml
+*.iws
+*.ipr
+
+# vscode
+.vscode
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Other
+*.log
+*.swp
+*.bak
