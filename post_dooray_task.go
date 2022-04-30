@@ -12,6 +12,8 @@ func main() {
 
 	projectId := os.Args[0]
 	authorizationToken := os.Args[1]
+	releaseName := os.Args[2]
+	releaseBody := os.Args[3]
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
@@ -19,10 +21,10 @@ func main() {
 			"to": [],
 			"cc": []
 		},
-		"subject": "제목을 입력합니다.",
+		"subject": "` + releaseName + `",
 		"body": {
 			"mimeType": "text/html",
-			"content": "본문을 입력합니다."
+			"content": "` + releaseBody + `"
 		},
 		"dueDate": null,
 		"dueDateFlag": true,
