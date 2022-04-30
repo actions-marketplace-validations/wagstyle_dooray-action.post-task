@@ -15,5 +15,5 @@ runs:
         go-version: 1.18
 
     - name: Run
-      run: go run post_dooray_task.go $DOORAY_PROJECT_ID $DOORAY_AUTHORIZATION_TOKEN
+      run: go run post_dooray_task.go $DOORAY_PROJECT_ID $DOORAY_AUTHORIZATION_TOKEN $RELEASE_NAME $RELEASE_BODY
       shell: bash
