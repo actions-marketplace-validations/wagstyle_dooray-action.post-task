@@ -17,8 +17,7 @@ inputs:
 
 runs:
   using: composite
-  steps:       
-
+  steps:
     - name: Run
       run: go run post_dooray_task.go ${{ github.event.inputs.projectId }} ${{ github.event.inputs.authorizationToken }} ${{ github.event.inputs.releaseName }} ${{ github.event.inputs.releaseBody }}
       shell: bash
