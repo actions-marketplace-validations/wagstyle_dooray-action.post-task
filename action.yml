@@ -9,10 +9,10 @@ inputs:
     description: 'Authorization Token for using dooray API'
     required: true
   subject:
-    description: 'Subject of release'
+    description: 'Subject for dooray task'
     required: true
   content:
-    description: 'Content of release'
+    description: 'Content of dooray task'
     required: false
 
 runs:
