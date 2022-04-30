@@ -10,15 +10,15 @@ import (
 
 func main() {
 
-	projectId := os.Getenv("INPUT_PROJECT_ID")
-	authorizationToken := os.Getenv("INPUT_AUTHORIZATION_TOKEN")
-	releaseName := os.Getenv("INPUT_RELEASE_NAME")
-	releaseBody := os.Getenv("INPUT_RELEASE_BODY")
+	project := os.Getenv("INPUT_PROJECT")
+	token := os.Getenv("INPUT_TOKEN")
+	subject := os.Getenv("INPUT_SUBJECT")
+	content := os.Getenv("INPUT_CONTENT")
 
-	fmt.Println("projectId: ", projectId)
-	fmt.Println("authorizationToken: ", authorizationToken)
-	fmt.Println("releaseName: ", releaseName)
-	fmt.Println("releaseBody: ", releaseBody)
+	fmt.Println("project: ", project)
+	fmt.Println("token: ", token)
+	fmt.Println("subject: ", subject)
+	fmt.Println("content: ", content)
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
@@ -26,10 +26,10 @@ func main() {
 			"to": [],
 			"cc": []
 		},
-		"subject": "` + releaseName + `",
+		"subject": "` + subject + `",
 		"body": {
 			"mimeType": "text/html",
-			"content": "` + releaseBody + `"
+			"content": "` + content + `"
 		},
 		"dueDate": null,
 		"dueDateFlag": true,
@@ -38,10 +38,10 @@ func main() {
 		"priority": "none"
 	}`)
 
-	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", projectId)
+	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", project)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", fmt.Sprintf("dooray-api %s", authorizationToken))
+	req.Header.Set("Authorization", fmt.Sprintf("dooray-api %s", token))
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
