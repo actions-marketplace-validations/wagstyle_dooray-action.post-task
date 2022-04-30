@@ -19,5 +19,5 @@ runs:
   using: composite
   steps:
     - name: Run
-      run: go run post_dooray_task.go
+      run: go run post_dooray_task.go ${{ inputs.project }} ${{ inputs.token }} ${{ inputs.subject }} ${{ inputs.content }}
       shell: bash
