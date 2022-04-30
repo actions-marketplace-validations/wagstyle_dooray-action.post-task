@@ -21,3 +21,8 @@ runs:
     - name: Run
       run: go run post_dooray_task.go
       shell: bash
+      args:
+        - ${{ inputs.project }}
+        - ${{ inputs.token }}
+        - ${{ inputs.subject }}
+        - ${{ inputs.content }}
