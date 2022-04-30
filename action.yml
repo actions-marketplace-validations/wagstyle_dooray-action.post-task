@@ -7,7 +7,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         repository: wagstyle/dooray-action.post-task
-        ref: v0.1.12
+        ref: v0.1.13
 
     - name: Set up Go
       uses: actions/setup-go@v3
