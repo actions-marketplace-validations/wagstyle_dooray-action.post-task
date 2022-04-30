@@ -11,10 +11,10 @@ import (
 func main() {
 
 	var (
-		project = os.Args[0]
-		token   = os.Args[1]
-		subject = os.Args[2]
-		content = os.Args[3]
+		project = os.Args[1]
+		token   = os.Args[2]
+		subject = os.Args[3]
+		content = os.Args[4]
 	)
 
 	fmt.Println("project: ", project)
