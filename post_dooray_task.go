@@ -15,6 +15,11 @@ func main() {
 	releaseName := os.Args[2]
 	releaseBody := os.Args[3]
 
+	fmt.Println("projectId: ", projectId)
+	fmt.Println("authorizationToken: ", authorizationToken)
+	fmt.Println("releaseName: ", releaseName)
+	fmt.Println("releaseBody: ", releaseBody)
+
 	var jsonStr = []byte(`{
 		"parentPostId": null,
 		"users": {
@@ -46,7 +51,7 @@ func main() {
 	defer resp.Body.Close()
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response Status:", resp.Status)
-	fmt.Println("response Headers:", resp.Header)
-	fmt.Println("response Body:", string(body))
+	fmt.Println("response Status: ", resp.Status)
+	fmt.Println("response Headers: ", resp.Header)
+	fmt.Println("response Body: ", string(body))
 }
