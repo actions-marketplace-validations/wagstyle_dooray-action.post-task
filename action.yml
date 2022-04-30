@@ -4,6 +4,5 @@ description: "Post task to specific dooray project."
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
     - run: go run post_dooray_task.go
       shell: bash
