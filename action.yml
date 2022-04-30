@@ -1,23 +1,9 @@
 name: "Post dooray task"
 description: "Post task to specific dooray project."
 
-inputs:
-  project:
-    description: 'Project ID of dooray'
-    required: true
-  token:
-    description: 'Authorization Token for using dooray API'
-    required: true
-  subject:
-    description: 'Subject for dooray task'
-    required: true
-  content:
-    description: 'Content of dooray task'
-    required: false
-
 runs:
   using: composite
   steps:
     - name: Run
-      run: go run post_dooray_task.go ${{ inputs.project }} ${{ inputs.token }} ${{ inputs.subject }} ${{ inputs.content }}
+      run: go run post_dooray_task.go
       shell: bash

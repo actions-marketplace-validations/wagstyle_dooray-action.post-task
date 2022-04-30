@@ -11,10 +11,10 @@ import (
 func main() {
 
 	var (
-		project = os.Args[1]
-		token   = os.Args[2]
-		subject = os.Args[3]
-		content = os.Args[4]
+		project = os.Getenv("PROJECT_ID")
+		token   = os.Getenv("AUTHORIZATION_TOKEN")
+		subject = os.Getenv("SUBJECT")
+		content = os.Getenv("CONTENT")
 	)
 
 	fmt.Println("project: ", project)
