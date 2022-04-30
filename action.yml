@@ -4,6 +4,13 @@ description: "Post task to specific dooray project."
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
     - name: See directory
       run: ls -la
       shell: bash
