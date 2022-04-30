@@ -10,10 +10,10 @@ import (
 
 func main() {
 
-	projectId := os.Args[0]
-	authorizationToken := os.Args[1]
-	releaseName := os.Args[2]
-	releaseBody := os.Args[3]
+	projectId := os.Getenv("INPUT_PROJECT_ID")
+	authorizationToken := os.Getenv("INPUT_AUTHORIZATION_TOKEN")
+	releaseName := os.Getenv("INPUT_RELEASE_NAME")
+	releaseBody := os.Getenv("INPUT_RELEASE_BODY")
 
 	fmt.Println("projectId: ", projectId)
 	fmt.Println("authorizationToken: ", authorizationToken)
