@@ -1,7 +1,7 @@
 name: Initialize
 
 jobs:
-  init:
+  check-build:
     name: Init environment
     runs-on: ubuntu-latest
     steps:
