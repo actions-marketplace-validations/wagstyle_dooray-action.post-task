@@ -5,8 +5,8 @@ runs:
   using: composite
   steps:
     - name: See directory
-      run: |
-        ls -la
+      run: ls -la
+      shell: bash
         
     - name: Run
       run: go run post_dooray_task.go
