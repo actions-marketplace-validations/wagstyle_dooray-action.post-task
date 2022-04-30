@@ -5,9 +5,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func main() {
+
+	projectId := os.Args[0]
+	authorizationToken := os.Args[1]
+	releaseName := os.Args[2]
+	releaseBody := os.Args[3]
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
@@ -15,10 +21,10 @@ func main() {
 			"to": [],
 			"cc": []
 		},
-		"subject": "제목을 입력합니다.",
+		"subject": "` + releaseName + `",
 		"body": {
 			"mimeType": "text/html",
-			"content": "본문을 입력합니다."
+			"content": "` + releaseBody + `"
 		},
 		"dueDate": null,
 		"dueDateFlag": true,
@@ -27,10 +33,10 @@ func main() {
 		"priority": "none"
 	}`)
 
-	url := "https://api.dooray.com/project/v1/projects/3202204541701520238/posts"
+	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", projectId)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "dooray-api ajjt1imxmtj4:en4Wg43eQmC2LE97dVeU7Q")
+	req.Header.Set("Authorization", fmt.Sprintf("dooray-api %s", authorizationToken))
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -39,8 +45,8 @@ func main() {
 	}
 	defer resp.Body.Close()
 
+	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println("response Status:", resp.Status)
 	fmt.Println("response Headers:", resp.Header)
-	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println("response Body:", string(body))
 }

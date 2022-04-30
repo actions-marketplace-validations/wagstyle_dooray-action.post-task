@@ -3,18 +3,17 @@ description: "Post task to specific dooray project."
 
 runs:
   using: composite
-  steps:
+  steps:       
     - uses: actions/checkout@v3
+      with:
+        repository: wagstyle/dooray-action.post-task
+        ref: v0.1.13
 
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
 
-    - name: See directory
-      run: ls -la
-      shell: bash
-        
     - name: Run
-      run: go run post_dooray_task.go
+      run: go run post_dooray_task.go $DOORAY_PROJECT_ID $DOORAY_AUTHORIZATION_TOKEN $RELEASE_NAME $RELEASE_BODY
       shell: bash
