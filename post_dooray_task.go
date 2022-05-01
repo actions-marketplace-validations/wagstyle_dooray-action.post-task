@@ -44,7 +44,7 @@ func main() {
 		"priority": "none"
 	}`)
 
-	fmt.Println("jsonStr: ", jsonStr)
+	fmt.Println("jsonStr: ", string(jsonStr))
 
 	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", project)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
