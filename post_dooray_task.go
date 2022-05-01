@@ -15,12 +15,14 @@ func main() {
 		token   = os.Getenv("AUTHORIZATION_TOKEN")
 		subject = os.Getenv("SUBJECT")
 		content = os.Getenv("CONTENT")
+		tag     = os.Getenv("TAG")
 	)
 
 	fmt.Println("project: ", project)
 	fmt.Println("token: ", token)
 	fmt.Println("subject: ", subject)
 	fmt.Println("content: ", content)
+	fmt.Println("tag: ", tag)
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
@@ -36,7 +38,7 @@ func main() {
 		"dueDate": null,
 		"dueDateFlag": true,
 		"milestoneId": null,
-		"tagIds": [],
+		"tagIds": ["` + tag + `"],
 		"priority": "none"
 	}`)
 
