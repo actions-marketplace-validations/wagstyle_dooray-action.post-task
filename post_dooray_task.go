@@ -29,7 +29,7 @@ func main() {
 	var jsonStr = []byte(`{
 		"parentPostId": null,
 		"users": {
-			"to": ["` + recipient + `"],
+			"to": [` + recipient + `],
 			"cc": []
 		},
 		"subject": "` + subject + `",
