@@ -34,7 +34,7 @@ func main() {
 		},
 		"subject": "` + subject + `",
 		"body": {
-			"mimeType": "text/markdown",
+			"mimeType": "text/x-markdown",
 			"content": "` + content + `"
 		},
 		"dueDate": null,
