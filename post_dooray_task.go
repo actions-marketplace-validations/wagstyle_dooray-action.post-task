@@ -8,6 +8,14 @@ import (
 	"os"
 )
 
+func NormalizeNewlines(d []byte) []byte {
+	// replace CR LF \r\n (windows) with LF \n (unix)
+	d = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)
+	// replace CF \r (mac) with LF \n (unix)
+	d = bytes.Replace(d, []byte{13}, []byte{10}, -1)
+	return d
+}
+
 func main() {
 
 	var (
@@ -26,7 +34,7 @@ func main() {
 	fmt.Println("recipient: ", recipient)
 	fmt.Println("tag: ", tag)
 
-	var jsonStr = []byte(`{
+	var jsonStr = NormalizeNewlines([]byte(`{
 		"parentPostId": null,
 		"users": {
 			"to": [` + recipient + `],
@@ -42,7 +50,7 @@ func main() {
 		"milestoneId": null,
 		"tagIds": ["` + tag + `"],
 		"priority": "none"
-	}`)
+	}`))
 
 	fmt.Println("jsonStr: ", string(jsonStr))
 
