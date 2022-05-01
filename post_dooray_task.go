@@ -11,23 +11,25 @@ import (
 func main() {
 
 	var (
-		project = os.Getenv("PROJECT_ID")
-		token   = os.Getenv("AUTHORIZATION_TOKEN")
-		subject = os.Getenv("SUBJECT")
-		content = os.Getenv("CONTENT")
-		tag     = os.Getenv("TAG")
+		project   = os.Getenv("PROJECT_ID")
+		token     = os.Getenv("AUTHORIZATION_TOKEN")
+		subject   = os.Getenv("SUBJECT")
+		content   = os.Getenv("CONTENT")
+		recipient = os.Getenv("RECIPIENT")
+		tag       = os.Getenv("TAG")
 	)
 
 	fmt.Println("project: ", project)
 	fmt.Println("token: ", token)
 	fmt.Println("subject: ", subject)
 	fmt.Println("content: ", content)
+	fmt.Println("recipient: ", recipient)
 	fmt.Println("tag: ", tag)
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
 		"users": {
-			"to": [],
+			"to": ["` + recipient + `"],
 			"cc": []
 		},
 		"subject": "` + subject + `",
