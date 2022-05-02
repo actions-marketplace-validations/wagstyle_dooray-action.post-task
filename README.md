@@ -1,7 +1,7 @@
 # dooray-action.post-task
 
-## Usage
-### Notify Releases
+### Usage
+- Notify Releases
 ```
 name: Notify releases
 
