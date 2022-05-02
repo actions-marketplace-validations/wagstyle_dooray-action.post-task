@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -18,6 +19,9 @@ func main() {
 		recipient = os.Getenv("RECIPIENT")
 		tag       = os.Getenv("TAG")
 	)
+
+	content = strings.Replace(content, "\n", `\n`, -1)
+	content = strings.Replace(content, "\r", `\r`, -1)
 
 	fmt.Println("project: ", project)
 	fmt.Println("token: ", token)
