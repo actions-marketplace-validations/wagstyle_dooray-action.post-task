@@ -1,33 +1,9 @@
 name: "Post dooray task"
 description: "Post task to specific dooray project."
 
-inputs:
-  projectId:
-    description: 'Project ID of dooray'
-    required: true
-  authorizationToken:
-    description: 'Authorization Token for using dooray API'
-    required: true
-  releaseName:
-    description: 'Name of release'
-    required: true
-  releaseBody:
-    description: 'Details of release'
-    required: false
-
 runs:
   using: composite
-  steps:       
-    - uses: actions/checkout@v3
-      with:
-        repository: wagstyle/dooray-action.post-task
-        ref: v0.1.13
-
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
-
+  steps:
     - name: Run
-      run: go run post_dooray_task.go ${{ github.event.inputs.projectId }} ${{ github.event.inputs.authorizationToken }} ${{ github.event.inputs.releaseName }} ${{ github.event.inputs.releaseBody }}
+      run: go run post_dooray_task.go
       shell: bash

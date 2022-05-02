@@ -6,42 +6,54 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
 
-	projectId := os.Args[0]
-	authorizationToken := os.Args[1]
-	releaseName := os.Args[2]
-	releaseBody := os.Args[3]
+	var (
+		project   = os.Getenv("PROJECT_ID")
+		token     = os.Getenv("AUTHORIZATION_TOKEN")
+		subject   = os.Getenv("SUBJECT")
+		content   = os.Getenv("CONTENT")
+		recipient = os.Getenv("RECIPIENT")
+		tag       = os.Getenv("TAG")
+	)
 
-	fmt.Println("projectId: ", projectId)
-	fmt.Println("authorizationToken: ", authorizationToken)
-	fmt.Println("releaseName: ", releaseName)
-	fmt.Println("releaseBody: ", releaseBody)
+	content = strings.Replace(content, "\n", `\n`, -1)
+	content = strings.Replace(content, "\r", `\r`, -1)
+
+	fmt.Println("project: ", project)
+	fmt.Println("token: ", token)
+	fmt.Println("subject: ", subject)
+	fmt.Println("content: ", content)
+	fmt.Println("recipient: ", recipient)
+	fmt.Println("tag: ", tag)
 
 	var jsonStr = []byte(`{
 		"parentPostId": null,
 		"users": {
-			"to": [],
+			"to": [` + recipient + `],
 			"cc": []
 		},
-		"subject": "` + releaseName + `",
+		"subject": "` + subject + `",
 		"body": {
-			"mimeType": "text/html",
-			"content": "` + releaseBody + `"
+			"mimeType": "text/x-markdown",
+			"content": "` + content + `"
 		},
 		"dueDate": null,
 		"dueDateFlag": true,
 		"milestoneId": null,
-		"tagIds": [],
+		"tagIds": ["` + tag + `"],
 		"priority": "none"
 	}`)
 
-	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", projectId)
+	fmt.Println("jsonStr: ", string(jsonStr))
+
+	url := fmt.Sprintf("https://api.dooray.com/project/v1/projects/%s/posts", project)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", fmt.Sprintf("dooray-api %s", authorizationToken))
+	req.Header.Set("Authorization", fmt.Sprintf("dooray-api %s", token))
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
